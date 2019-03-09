@@ -1,7 +1,5 @@
 import boto3
 
-##Wrappers that instantiate the boto3 Resource....goal is to manipulate AWS Cloud objects
-
 
 class VPC
 	def __init__(self, vpc_id=None):
@@ -58,10 +56,6 @@ class VPC
 
 
 
-	##TODO:## 
-	def get_subnets(self):
-		return list_subnet_ids
-
 	def create_subnet(self, ipv4_cidr, ipv6_cidr=None, azone=None, name=None)
 		client = self._create_client('ec2', aws_access_key_id, aws_secret_access_key)
 		waiter = client.get_waiter('vpc_available')
@@ -87,26 +81,6 @@ class VPC
 		route_table_id = route_table['RouteTable']['RouteTableId']
 		self.route_tables.add(route_table_id)
 		del client
-
-	def set_routes(self, route_table_id, route_map):
-		client = self._create_client('ec2', aws_access_key_id, aws_secret_access_key)
-
-
-
-
-	def associate_route_table(self, ):
-		client = self.create_client('ec2', aws_access_key_id, aws_secret_access_key)
-
-
-
-	def attach_route_table(self, route_table_id, subnet_id):
-	def detach_route_table(self, route_table_id, subnet_id):
-	def set_routes(self, route_table_id, route_map):
-	def reset_route_table(self, ):
-
-
-	def create_natgateway(self):
-
 
 
 
